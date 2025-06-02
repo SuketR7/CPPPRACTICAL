@@ -5,36 +5,161 @@
 //x=B2: The current trial number (Number of Successes)
 //p=0.6: The probability of success
 //q=1-0.6: Probability of failure
+//Probability of Success	Number of Success	Binomial Distribution
+0.6	0	0.000104858
+0.6	1	0.001572864
+0.6	2	0.010616832
+0.6	3	0.042467328
+0.6	4	0.111476736
+0.6	5	0.200658125
+0.6	6	0.250822656
+0.6	7	0.214990848
+0.6	8	0.120932352
+0.6	9	0.040310784
+0.6	10	0.006046618
+
 
 //Q2Plotting and fitting of Multinomial distribution 
 //=(FACT(6)/(FACT(A2)*FACT(B2)*FACT(C2)))*POWER(D2,A2)*POWER(E2,B2)*POWER(F2,C2)
+Category A	Category B	Category C	P(A)	P(B)	P(C)	Multinommial Distribution
+1	2	3	0.3	0.4	0.5	0.36
+0	3	4	0.3	0.4	0.5	0.02
+2	4	5	0.3	0.4	0.5	0.000009
+4	5	6	0.3	0.4	0.5	4.5E-10
+2	6	1	0.3	0.4	0.5	9.216E-05
+2	0	3	0.3	0.4	0.5	0.675
+6	1	3	0.3	0.4	0.5	0.000006075
+
 
 //Q3Plotting and fitting of Poisson distribution 
 //Mean: =AVERAGE(A2:A25)
 //POISSON.DIST(A2,24.58333,FALSE)
 //A3 THEN A4 AISE CHALEGA
+asbestos_fibers	Poission Distribution
+31	0.032994056
+29	0.050773515
+19	0.045779846
+28	0.059895545
+31	0.032994056
+28	0.059895545
+14	0.007114707
+26	0.074926405
+27	0.06822002
+34	0.013652589
+30	0.04160607
+16	0.017915429
+18	0.035382394
+26	0.074926405
+27	0.06822002
+28	0.059895545
+18	0.035382394
+24	0.080587342
+22	0.07360791
+28	0.059895545
+24	0.080587342
+21	0.06587285
+17	0.025907112
+24	0.080587342
+
 
 //Q4Plotting and fitting of Geometric distribution 
 //=POWER(C2,A2-1)*B2
+Trials	Probability of success	Probability of failure	Geometric distribution
+1	0.32	0.68	0.32
+2	0.32	0.68	0.2176
+3	0.32	0.68	0.147968
+4	0.32	0.68	0.10061824
+5	0.32	0.68	0.068420403
+6	0.32	0.68	0.046525874
+
 
 //Q5Plotting and fitting of Uniform distribution
 //Minimum: =MIN(A2:A21) ->D2
 //Maximum: =MAX(A2:A21) ->E2
 //Uniform Distribution: =IF(AND(A2>=D2, A2<=E2), 1/(E2-D2), 0)
+Data	Uniform Distribution
+18	0.047619048
+9	0.047619048
+18	0.047619048
+18	0.047619048
+21	0.047619048
+6	0.047619048
+19	0.047619048
+10	0.047619048
+2	0.047619048
+21	0.047619048
+9	0.047619048
+18	0.047619048
+23	0.047619048
+2	0.047619048
+11	0.047619048
+18	0.047619048
+19	0.047619048
+15	0.047619048
+9	0.047619048
+7	0.047619048
+
 
 //Q6Plotting and fitting of Exponential distribution
 //Mean: =AVERAGE(A2:A22) ->D2
 //Lambda (𝜆): =1/D2 ->E2
 //Exponential Distribution: =EXPON.DIST(A2,E2,TRUE)
+Data	Exponential Distribution		Mean	(𝜆)
+9.206344	0.629481725		9.272619952	0.107844385
+9.299991	0.633204869			
+9.277896	0.63232982			
+9.305795	0.633434385			
+9.275352	0.632228933			
+9.288728	0.63275907			
+9.287239	0.632700094			
+9.260974	0.63165823			
+9.303111	0.633328266			
+9.275675	0.632241744			
+9.272561	0.63211822			
+9.288455	0.632748258			
+9.255673	0.631447595			
+9.252131	0.631306787			
+9.29767	    0.633113047			
+9.266535	0.631879067			
+9.256689	0.631487975			
+9.277544	0.632315862			
+9.248204	0.63115061			
+9.252107	0.631305833			
+9.276345	0.632268316			
+
 
 //Q7Plotting and fitting of Normal distribution 
 //Mean: =AVERAGE(A2:A22) ->D2
 //Standard Deviation: =STDEV(A2:A22)->E2
 //Normal Distribution: =NORM.DIST(A2,D2,E2,TRUE)
+Data	Normal Distribution		Mean	Standard Deviation
+9.206343	0.002132262		9.272620095	0.023190824
+9.299992	0.881057614			
+9.277895	0.589965623			
+9.305795	0.923715883			
+9.275351	0.546870291			
+9.288729	0.756354541			
+9.287239	0.735775215			
+9.260973	0.307753361			
+9.303111	0.905708605			
+9.275674	0.552383635			
+9.272561	0.49898341			
+9.288454	0.752622623			
+9.255672	0.232447486			
+9.252141	0.002132262			
+9.29767	0.859965533			
+9.266534	0.396492857			
+9.256689	0.246054962			
+9.277542	0.584038153			
+9.248205	0.146218351			
+9.252107	0.188203741			
+9.276345	0.563803558			
+
 
 //Q8Calculation of cumulative distribution functions for Exponential and Normal distribution.
 // For Exponential: =EXPON.DIST(K4, K3, TRUE) ,x=K4, 𝜆=K3
 // For Normal: =NORM.DIST(K9,K8,K7,TRUE) σ=K7, µ=K8, x=k9
+
 
 //Q9- Application problems based on the Binomial distribution.
 // =BINOM.DIST(5, H5, H6, FALSE) H5=100,H6=0.03
