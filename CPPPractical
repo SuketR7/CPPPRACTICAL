@@ -1,160 +1,72 @@
-//string manipulation
-#include <iostream>
-#include <cstring>
+//Q1Plotting and fitting of Binomial distribution 
+//=COMBIN(10, B2)*0.6^B2*(1-0.6)^(10-B2)
+//=COMBIN(n, x)*p^x*(1-p)^(n-x)
+//n=10: Total number of trials.
+//x=B2: The current trial number (Number of Successes)
+//p=0.6: The probability of success
+//q=1-0.6: Probability of failure
+
+//Q2Plotting and fitting of Multinomial distribution 
+//=(FACT(6)/(FACT(A2)*FACT(B2)*FACT(C2)))*POWER(D2,A2)*POWER(E2,B2)*POWER(F2,C2)
+
+//Q3Plotting and fitting of Poisson distribution 
+//Mean: =AVERAGE(A2:A25)
+//POISSON.DIST(A2,24.58333,FALSE)
+//A3 THEN A4 AISE CHALEGA
+
+//Q4Plotting and fitting of Geometric distribution 
+//=POWER(C2,A2-1)*B2
+
+//Q5Plotting and fitting of Uniform distribution
+//Minimum: =MIN(A2:A21) ->D2
+//Maximum: =MAX(A2:A21) ->E2
+//Uniform Distribution: =IF(AND(A2>=D2, A2<=E2), 1/(E2-D2), 0)
+
+//Q6Plotting and fitting of Exponential distribution
+//Mean: =AVERAGE(A2:A22) ->D2
+//Lambda (𝜆): =1/D2 ->E2
+//Exponential Distribution: =EXPON.DIST(A2,E2,TRUE)
+
+//Q7Plotting and fitting of Normal distribution 
+//Mean: =AVERAGE(A2:A22) ->D2
+//Standard Deviation: =STDEV(A2:A22)->E2
+//Normal Distribution: =NORM.DIST(A2,D2,E2,TRUE)
+
+//Q8Calculation of cumulative distribution functions for Exponential and Normal distribution.
+// For Exponential: =EXPON.DIST(K4, K3, TRUE) ,x=K4, 𝜆=K3
+// For Normal: =NORM.DIST(K9,K8,K7,TRUE) σ=K7, µ=K8, x=k9
+
+//Q9- Application problems based on the Binomial distribution.
+// =BINOM.DIST(5, H5, H6, FALSE) H5=100,H6=0.03
+// H5 IS NUMBER OF TRIALS AND H6 IS PROBABILITY OF SUCCESS 5 IS NUMBER OF SUCCESS
+
+//Q10Application problems based on the Poisson distribution.
+//=POISSON.DIST(0,M7, TRUE) Mean=M7, x=0 X IS NUMBER OF SUCCESS
+
+//Q11Application problems based on the Normal distribution.
+//=NORMDIST(85, K6, K7, TRUE) K6=Mean K7=S.D 85 IS NUMBER OF SUCCESS GIVEN IN QS
+
+//Q12Presentation of bivariate data through scatter-plot diagrams and calculations of covariance.
+// =COVAR(B2:B11,C2:C11)
+
+//Q13Calculation of Karl Pearson’s correlation coefficients.
+//=PEARSON(A2:A8,B2:B8)
+
+//Q14To find the correlation coefficient for a bivariate frequency distribution.
+//=CORREL(A2:A11,B2:B11)
+
+//Q15Generating Random numbers from discrete (Bernoulli, Binomial, Poisson) distributions. 
+//Bernoulli distribution: =IF(RAND() <= 5, 1, 0)
+//Binomial distribution: =BINOM.INV(10,0.5,RAND())
+//Poisson distribution: =POISSON.DIST(1,RAND(),FALSE)
+
+//Q16Generating Random numbers from continuous (Uniform, Normal) distributions.
+// Normal distribution: =NORM.DIST(RAND(),5,3,FALSE)
+// Uniform distribution: =ROUND(1 + (10 - 1 + 1)*RAND(),0)
+
+#include<iostream>
 using namespace std;
-
-void showAddress(const char* str) {
-    for (int i = 0; str[i] != '\0'; i++) {
-        cout << "Character: " << str[i] << ", Address: " << (void*)&str[i] << endl;
-    }
-}
-
-void concatenate(char* str1, const char* str2) {
-    int i = 0, j = 0;
-    while (str1[i] != '\0') i++;
-    while (str2[j] != '\0') str1[i++] = str2[j++];
-    str1[i] = '\0';
-}
-
-int compare(const char* str1, const char* str2) {
-    int i = 0;
-    while (str1[i] != '\0' && str2[i] != '\0') {
-        if (str1[i] != str2[i]) return (str1[i] - str2[i]);
-        i++;
-    }
-    return (str1[i] - str2[i]);
-}
-
-int length(const char* str) {
-    int len = 0;
-    while (str[len] != '\0') len++;
-    return len;
-}
-
-void toUpperCase(char* str) {
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (str[i] >= 'a' && str[i] <= 'z') {
-            str[i] = str[i] - 'a' + 'A';
-        }
-    }
-}
-
-void reverseString(char* str) {
-    int len = length(str), start = 0, end = len - 1;
-    while (start < end) {
-        char temp = str[start];
-        str[start] = str[end];
-        str[end] = temp;
-        start++;
-        end--;
-    }
-}
-
-void insertString(char* str1, const char* str2, int position) {
-    int len1 = length(str1), len2 = length(str2);
-    for (int i = len1; i >= position; i--) {
-        str1[i + len2] = str1[i];
-    }
-    for (int i = 0; i < len2; i++) {
-        str1[position + i] = str2[i];
-    }
-}
-
-int main() {
-    char str1[100], str2[50];
-    
-    // Input for strings
-    cout << "Enter the first string: ";
-    cin.getline(str1, 100);
-    cout << "Enter the second string: ";
-    cin.getline(str2, 50);
-
-    cout << "\nOriginal String: " << str1 << endl;
-
-    cout << "\nAddresses of characters:" << endl;
-    showAddress(str1);
-
-    cout << "\nConcatenating second string to the first:" << endl;
-    concatenate(str1, str2);
-    cout << "Result: " << str1 << endl;
-
-    cout << "\nComparing with the second string:" << endl;
-    int cmp = compare(str1, str2);
-    if (cmp == 0) cout << "Strings are equal" << endl;
-    else if (cmp < 0) cout << "First string is less than the second" << endl;
-    else cout << "First string is greater than the second" << endl;
-
-    cout << "\nLength of the concatenated string: " << length(str1) << endl;
-
-    cout << "\nConverting the concatenated string to uppercase:" << endl;
-    toUpperCase(str1);
-    cout << "Result: " << str1 << endl;
-
-    cout << "\nReversing the string:" << endl;
-    reverseString(str1);
-    cout << "Result: " << str1 << endl;
-
-    cout << "\nInserting second string into the reversed string at position 3:" << endl;
-    insertString(str1, str2, 3);
-    cout << "Result: " << str1 << endl;
-
-    return 0;
-}
-// Q1 Write a program to compute the sum of the first n terms of the following series:
-#include <iostream>
-#include <cmath>
-
-using namespace std;
-
-int main() {
-    int n;
-    cout << "Enter the number of terms: ";
-    cin >> n;
-
-    double sum = 0.0;
-    for (int i = 1; i <= n; i++) {
-        double term = 1.0 / pow(i, i); // 1 / i^i
-        if (i % 2 == 0) {
-            term = -term; // Alternating signs
-        }
-        sum += term;
-    }
-
-    cout << "Sum of the series: " << sum << endl;
-    return 0;
-}
-// Q2Write a program to remove the duplicates from an array.
-#include <iostream>
-
-using namespace std;
-
-int main() {
-    int n;
-    cout << "Enter the number of elements: ";
-    cin >> n;
-
-    int arr[n];
-    cout << "Enter the elements: ";
-    for (int i = 0; i < n; ++i) {
-        cin >> arr[i];
-    }
-
-    cout << "Array after removing duplicates: ";
-    for (int i = 0; i < n; ++i) {
-        // Print arr[i] only if it's the first time it appears
-        bool firstTime = true;
-        for (int j = 0; j < i; ++j) {
-            if (arr[i] == arr[j]) {
-                firstTime = false;
-                break;
-            }
-        }
-        if (firstTime==true) {
-            cout << arr[i] << " ";
-        }
-    }
-
-    cout << endl;
-
-    return 0;
+int main(){
+    int a=10;
+    cout<<a;
 }
